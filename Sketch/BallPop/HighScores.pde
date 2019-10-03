@@ -3,7 +3,6 @@ import java.util.regex.*;   //<>// //<>// //<>//
 class HighScores { //<>// //<>//
 
   //GLOBALS
-  BallPop bp;
   ArrayList<String[]> leaderboard = new ArrayList();
   Ball[] balls;
   String username = "";
@@ -12,8 +11,7 @@ class HighScores { //<>// //<>//
     CONSTRUCTOR
    Deals with setting up the HighScores object. In this case, all it does is pass the main class into the object.
    */
-  HighScores(BallPop bp) {
-    this.bp = bp;
+  HighScores() {
   }
 
   /*
@@ -44,9 +42,9 @@ class HighScores { //<>// //<>//
 
     if (checkIfCanAddToLeaderboard()) {
       //Print using rainbow
-      fill(bp.redValue, bp.greenValue, bp.blueValue);
+      fill(redValue, greenValue, blueValue);
       textAlign(CENTER);
-      text("NEW HIGH SCORE: " + df.format(bp.timeCompleted), width / 2, 50);
+      text("NEW HIGH SCORE: " + df.format(timeCompleted), width / 2, 50);
 
       fill(0);
       text("PRESS ENTER TO SAVE", width / 2, height - 50);
@@ -54,7 +52,7 @@ class HighScores { //<>// //<>//
       textAlign(LEFT);
       text("ENTER NAME: " + username, 100, 150);
     } else {
-      fill(bp.redValue, bp.greenValue, bp.blueValue);
+      fill(redValue, greenValue, blueValue);
       textAlign(CENTER);
       text("HIGH SCORE LEADERBOARD", width / 2, 100);
 
@@ -101,7 +99,7 @@ class HighScores { //<>// //<>//
 
     for (int i = 0; i < leaderboard.size(); i++) {
       String[] row = leaderboard.get(i);
-      if (bp.timeCompleted < Float.parseFloat(row[1])) {
+      if (timeCompleted < Float.parseFloat(row[1])) {
         leaderboard.add(i, newRecord);
         break;
       }
@@ -148,11 +146,11 @@ class HighScores { //<>// //<>//
    Returns TRUE if there is a faster time, or FALSE if not.
    */
   boolean checkIfCanAddToLeaderboard() {
-    if (bp.timeCompleted == 0) return false;
+    if (timeCompleted == 0) return false;
 
     for (int i = 0; i < leaderboard.size(); i++) {
       String[] row = leaderboard.get(i);
-      if (bp.timeCompleted < Float.parseFloat(row[1])) return true;
+      if (timeCompleted < Float.parseFloat(row[1])) return true;
     }
 
     return false;
@@ -183,13 +181,13 @@ class HighScores { //<>// //<>//
         case RETURN:
           //Save to the leaderboard
           println("this does in fact get called");
-          saveToLeaderboard(username, bp.timeCompleted);
+          saveToLeaderboard(username, timeCompleted);
           try {
             Thread.sleep(3000);
           } 
           catch (Exception ex) {
           }
-          bp.currentWindow = 0;
+          currentWindow = 0;
           break;
         default:
           //Add character to username
@@ -199,7 +197,7 @@ class HighScores { //<>// //<>//
       }
     } else {
       if (key == ENTER || key == RETURN) {
-        bp.currentWindow = 0;
+        currentWindow = 0;
       }
     }
   }

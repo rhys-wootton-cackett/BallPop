@@ -2,7 +2,7 @@ BallPop (distributed as BubblePop) is a Processing game created during 'Coding B
 
 The BubblePop logo was created using fontmeme.com. The font used is Karmatic Arcade by Vic Fieger.
 
-Bubble pop sounds are from freesound.org using the CC0 1.0 Universal license.
+Bubble pop sounds are from freesound.org. Game music is 'w1x' by Rolemusic from freemusicarchive.org. All licensed under CC0 1.0 Universal license.
 
 BallPop is licensed under GNU General Public License v3.0.
 

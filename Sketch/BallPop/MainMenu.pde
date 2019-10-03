@@ -9,11 +9,9 @@ class MainMenu { //<>// //<>// //<>//
 
   float startTextSize, highScoreTextSize;
 
-  BallPop bp;
   GamePlay mainGame;
 
-  MainMenu(BallPop bp, GamePlay gp) {
-    this.bp = bp;
+  MainMenu(GamePlay gp) {
     this.mainGame = gp;
   }
 
@@ -22,7 +20,7 @@ class MainMenu { //<>// //<>// //<>//
    Draws onto the grid every 60 seconds.
    */
   void draw() {
-    if (bp.currentWindow == 0) {
+    if (currentWindow == 0) {
       background(#f0f0f0);
       drawMainMenu();
     }
@@ -134,14 +132,14 @@ class MainMenu { //<>// //<>// //<>//
       && mouseX > ((width / 2) - (startTextSize / 2)) && mouseX < ((width / 2) + (startTextSize / 2))) 
     {
       //Set current window to game mode
-      bp.currentWindow = 1;
+      currentWindow = 1;
       mainGame.startGame();
     }
     //Check if high score button has been clicked
     else if (mouseY < ((height / 2) + 75) && mouseY > ((height / 2) + 75 - 36)
       && mouseX > ((width / 2) - (highScoreTextSize / 2)) && mouseX < ((width / 2) + (highScoreTextSize / 2))) 
     {
-      bp.currentWindow = 2;
+      currentWindow = 2;
     }
     //Check if version number has been clicked
     else if (mouseY < height && mouseY > height - 20 && mouseX > 0 && mouseX < 68) {

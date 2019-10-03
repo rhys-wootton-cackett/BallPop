@@ -4,7 +4,6 @@ class GamePlay {
 
   //GLOBALS
   Ball balls[];
-  BallPop bp;
   float time;
   int ballsDestroyed;
   int destroyedPrevious;
@@ -14,14 +13,12 @@ class GamePlay {
     CONSTRUCTOR
    Deals with creating the GamePlay object.
    */
-  GamePlay(BallPop bp) {
+  GamePlay() {
     balls = new Ball[30];
 
     for (int i = 0; i < balls.length; i++) {
       balls[i] = new Ball(false, 800, 800);
     }
-
-    this.bp = bp;
   }
 
   /*
@@ -43,7 +40,7 @@ class GamePlay {
    than just calling draw.
    */
   void startGame() {
-    if (bp.currentWindow == 1) {
+    if (currentWindow == 1) {
       frameCount = -600;
       draw();
     }
@@ -74,16 +71,15 @@ class GamePlay {
    Deals with the actual game. This includes drawing all the balls on the screen, along with checking if
    any of the balls have been hit. It also deals with drawing the timer to the screen.
    */
-
   void playGame() {
-    background(#f0f0f0);
+    background(#f0f0f0); //<>//
 
     if (ballsDestroyed == balls.length) {
       if (frameCount > (time * 60) + 300) {
-        bp.currentWindow = 2;
+        currentWindow = 2;
       }
       //Set the top global variable to the time that all balls were popped
-      bp.timeCompleted = time;
+      timeCompleted = time;
 
       //Draw text "game completed" with the final time.
       textAlign(CENTER);

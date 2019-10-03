@@ -1,14 +1,13 @@
-import java.io.FileReader;
-import java.io.FileNotFoundException;
-import processing.sound.*;
+import processing.sound.*; //<>//
 
 //GLOBALS
-GamePlay gamePlay = new GamePlay(this);
-MainMenu mainMenu = new MainMenu(this, gamePlay);
-HighScores highScores = new HighScores(this);
+GamePlay gamePlay = new GamePlay();
+MainMenu mainMenu = new MainMenu(gamePlay);
+HighScores highScores = new HighScores();
 DecimalFormat df = new DecimalFormat("0.000");
 
 SoundFile bubble1, bubble2;
+SoundFile music = new SoundFile(this, "music.mp3");
 
 float timeCompleted;
 
@@ -32,6 +31,12 @@ void setup() {
 
   bubble1 = new SoundFile(this, "bubble1.wav");
   bubble2 = new SoundFile(this, "bubble2.wav");
+
+  //Botch fix!
+  if (!music.isPlaying()) {
+    music.play();
+    music.loop();
+  }
 }
 
 void draw() {
@@ -39,9 +44,12 @@ void draw() {
 
   if (currentWindow == 0) {
     mainMenu.draw();
-    gamePlay = new GamePlay(this);
-  } else if (currentWindow == 1) gamePlay.draw();
-  else if (currentWindow == 2) highScores.draw();
+    gamePlay = new GamePlay();
+  } else if (currentWindow == 1) {
+    gamePlay.draw();
+  } else if (currentWindow == 2) {
+    highScores.draw();
+  }
 }
 
 void mouseClicked() {
