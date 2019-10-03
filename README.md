@@ -1,4 +1,5 @@
-# BallPop
+![BallPop logo](https://github.com/rhys-wootton/BallPop/blob/master/Sketch/BallPop/data/logo.png?raw=true)
+
 BallPop (distributed as BubblePop) is a Processing game created during 'Coding Bootcamp' at City, University of London's Computer Science Undergratuate course in 2019-20 Year 1. 
 
 The BubblePop logo was created using fontmeme.com. The font used is Karmatic Arcade by Vic Fieger.
