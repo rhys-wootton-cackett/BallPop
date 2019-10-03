@@ -1,6 +1,6 @@
-import java.util.regex.*;   //<>// //<>//
+import java.util.regex.*;   //<>// //<>// //<>//
 
-class HighScores { //<>// //<>// //<>//
+class HighScores { //<>// //<>//
 
   //GLOBALS
   BallPop bp;
@@ -8,14 +8,27 @@ class HighScores { //<>// //<>// //<>//
   Ball[] balls;
   String username = "";
 
+  /*
+    CONSTRUCTOR
+   Deals with setting up the HighScores object. In this case, all it does is pass the main class into the object.
+   */
   HighScores(BallPop bp) {
     this.bp = bp;
   }
 
+  /*
+    draw()
+   Draws to the grid 60 frames a second.
+   */
   void draw() {
     drawHighScores();
   }
 
+  /*
+    drawHighScores()
+   Deals with drawing the high score leaderboard, and displaying either just the high scores or a screen to deal when 
+   a player has a time that can be added to the high score leaderboard.
+   */
   void drawHighScores() {
     background(#f0f0f0);
 
@@ -50,6 +63,10 @@ class HighScores { //<>// //<>// //<>//
     }
   }
 
+  /*
+    setupMainMenuBalls()
+   Sets up the background bouncing balls on the high score leaderboard
+   */
   void setupHighScoreBalls() {
     balls = new Ball[50];
 
@@ -58,6 +75,10 @@ class HighScores { //<>// //<>// //<>//
     }
   }
 
+  /*
+    readLeaderboard()
+   Reads in the leaderboard from leaderboard.cvs which is located in the data folder.
+   */
   void readLeaderboard() {
     leaderboard.clear();
     String[] rows = loadStrings("leaderboard.csv");
@@ -68,6 +89,10 @@ class HighScores { //<>// //<>// //<>//
     }
   }
 
+  /*
+    saveToLeaderboard()
+   Overwrites leaderboard.csv with a new leaderboard.csv that adds in any new high scores.
+   */
   void saveToLeaderboard(String username, float time) {
     String[] newRecord = new String[2];
 
@@ -96,6 +121,10 @@ class HighScores { //<>// //<>// //<>//
     saveStrings(dataPath("leaderboard.csv"), newLeaderboard);
   }
 
+  /*
+    printLeaderboard()
+   Prints the leaderboard that has been read in from leaderboard.csv
+   */
   void printLeaderboard() {
     //Print current high score leaderboard
     int yChange = 0;
@@ -113,6 +142,11 @@ class HighScores { //<>// //<>// //<>//
     }
   }
 
+  /*
+    checkIfCanAddToLeaderboard()
+   Runs a check to see if the time completed is faster than any of the times on the current leaderboard.
+   Returns TRUE if there is a faster time, or FALSE if not.
+   */
   boolean checkIfCanAddToLeaderboard() {
     if (bp.timeCompleted == 0) return false;
 
@@ -127,6 +161,10 @@ class HighScores { //<>// //<>// //<>//
   void mouseClicked() {
   }
 
+  /*
+    keyPressed()
+    Deals with the user entering their username into the high score leaderboard.
+   */
   void keyPressed() {
     if (checkIfCanAddToLeaderboard()) {
 
@@ -136,12 +174,14 @@ class HighScores { //<>// //<>// //<>//
       } else {
         switch (key) {
         case BACKSPACE:
+          //Delete the last entered character
           if (username.length() > 0) {
             username = username.substring(0, max(0, username.length() - 1));
           }
           break;
         case ENTER:
         case RETURN:
+          //Save to the leaderboard
           println("this does in fact get called");
           saveToLeaderboard(username, bp.timeCompleted);
           try {
@@ -151,11 +191,8 @@ class HighScores { //<>// //<>// //<>//
           }
           bp.currentWindow = 0;
           break;
-        //case SHIFT:
-        //case CONTROL:
-        //case TAB:
-        //  break;
         default:
+          //Add character to username
           username += key;
           break;
         }
