@@ -6,8 +6,10 @@ MainMenu mainMenu = new MainMenu(gamePlay);
 HighScores highScores = new HighScores();
 DecimalFormat df = new DecimalFormat("0.000");
 
-SoundFile bubble1, bubble2;
-SoundFile music = new SoundFile(this, "music.mp3");
+SoundFile bubble1, bubble2, music;
+
+//Botch fix!
+boolean ONLYPLAYONCE = false;
 
 float timeCompleted;
 
@@ -24,6 +26,7 @@ int currentWindow = 0;
 void setup() {
   size(800, 800);
   noStroke();
+
   mainMenu.setupMainMenuBalls();
   highScores.readLeaderboard();
   highScores.setupHighScoreBalls();
@@ -31,11 +34,12 @@ void setup() {
 
   bubble1 = new SoundFile(this, "bubble1.wav");
   bubble2 = new SoundFile(this, "bubble2.wav");
+  music = new SoundFile(this, "music.mp3");
 
-  //Botch fix!
-  if (!music.isPlaying()) {
+  if (ONLYPLAYONCE == false) {
     music.play();
     music.loop();
+    ONLYPLAYONCE = true;
   }
 }
 
