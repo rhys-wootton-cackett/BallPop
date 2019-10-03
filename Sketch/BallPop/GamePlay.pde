@@ -64,6 +64,7 @@ class GamePlay {
     textSize(32);
     fill(0);
     text("THE AIM OF THE GAME IS SIMPLE. 30 BALLS WILL APPEAR ON YOUR SCREEN, HIT ONE WITH YOUR MOUSE TO POP IT. TRY TO POP THEM ALL IN THE FASTEST TIME. GOOD LUCK!", 50, 150, width - 100, height - 50);
+    text("CLICK TO SKIP", 50, 650, width - 100, height - 50);
   }
 
   /*
@@ -129,5 +130,6 @@ class GamePlay {
   }
 
   void mouseClicked() {
+    if (frameCount < 0) frameCount = 0;
   }
 }
